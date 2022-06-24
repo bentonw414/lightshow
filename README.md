@@ -1,6 +1,6 @@
 # LightShow
 
-This repo contains the code for the LightShow Python package. In depth information about this package can be found in the `thesis.pdf` file at the root of the repo.
+This repo contains the code for the LightShow Python package. In depth information about this package can be found in the [thesis.pdf](./thesis.pdf) file at the root of the repo.
 
 ## Getting Started
 
@@ -46,7 +46,11 @@ This is just an alias for `Dict[Light, HSVInfo]`.
 
 A `Shape` represents a region in space (that has density which may vary over time). `point_in_shape` returns the density of the shape at a given point, and `bounding_cube` returns a `Cube` shape that bounds the region of space where the given `Shape` has density > 0 (across all of time).
 
-### Simple Server
+### Simple Server Visualizer
+
+In the `simple_visualizer` folder, there is a relatively simple web server that uses the `bottle` Python package to run a server that can render LightShows in the browser. The way to run this is by running the `server.py` file, and then navigating to `localhost:8080/public/index.html` (assuming the server is started on port 8080). The page will load, and then a button allows you to start the webserver playing in the 3D environment. This code is meant to be more of a template to show how the LightShow package might be used.
+
+The `SimpleServer` just takes in a LightShow to play as well as a port to run the server on.
 
 ### Visualizer
 
@@ -59,3 +63,7 @@ lightshow = fade(HSV(1, 1, 1), HSV(1, 1, 0), length=10000,
     
     Visualizer(lightshow).start(number_of_circles=25)
 ```
+
+## Misc Notes
+
+Note that the general `compiler_examples.py` file contains a method which allows to output from a `LightShow` to be compiled into a CSV representing the stream of HSV value outputs.

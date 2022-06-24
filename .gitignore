@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Ignore the csv compiled by simple_visualizer
+simple_visualizer/compiled.csv

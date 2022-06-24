@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<meta http-equiv="Cache-Control" content="private, no-store" />
+
+<head>
+    <title>LightShow visualizer</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+</head>
+
+<body>
+    <audio id="my-audio">
+        Unable to play the audio as requested
+    </audio>
+
+
+    <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+
+    <script type="importmap">
+        {
+            "imports": {
+            "three": "https://unpkg.com/three@0.140.2/build/three.module.js"
+        }
+    }
+    </script>
+    <script src="script.js" type="module"></script>
+    <div class="">
+        <div class="" id="render-div"></div>
+        <div class="">
+            <button id="thebutton">Loading</button>
+        </div>
+    </div>
+</body>
+
+</html>
