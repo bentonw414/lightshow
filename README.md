@@ -1,6 +1,6 @@
 # LightShow
 
-This repo contains the code for the LightShow Python package. In depth information about this package can be found in the thesis.pdf file at the root of the repo.
+This repo contains the code for the LightShow Python package. In depth information about this package can be found in the `thesis.pdf` file at the root of the repo.
 
 ## Getting Started
 
@@ -17,18 +17,18 @@ Then, choose how you want to visualize basic LightShows. If you want to visualiz
 
 ### LightShow
 
-LightShow objects are the core of the LightShow package. This is implemented as an abstract base class, with a few core methods:
-* `start`: this is the start time (in milliseconds) of the LightShow
-* `end`: this is the end time of the LightShow (milliseconds)
+`LightShow` objects are the core of the LightShow package. This is implemented as an abstract base class, with a few core methods:
+* `start`: this is the start time (in milliseconds) of the `LightShow`
+* `end`: this is the end time of the `LightShow` (milliseconds)
 * `length`: this is just the length of the light show (also ms)
-* `get_info_at`: this gets the lighting values of a LightShow given a time.
-* `with_audio`: this returns a new LightShow, initialized to use the metadata passed in as kwargs. See examples in the thesis document for how this works in practice.
+* `get_info_at`: this gets the lighting values of a `LightShow` given a time.
+* `with_audio`: this returns a new `LightShow`, initialized to use the metadata passed in as kwargs. See examples in the thesis document for how this works in practice.
 
-Generally LightShow objects should be created using abstractions from `lightshow/lighting_language.py`, but if you want to implement more abstractions, then you can import LightShow classes from `lightshow/core/lightshows.py`. Note that you can also implement the LightShow abc to expand the language.
+Generally `LightShow` objects should be created using abstractions from `lightshow/lighting_language.py`, but if you want to implement more abstractions, then you can import `LightShow` classes from `lightshow/core/lightshows.py`. Note that you can also implement the `LightShow` abc to expand the language.
 
 ### Light
 
-* This is the abstraction for a Light output by a LightShow, and contains `light_number`, `universe`, and `is_generic`. Generic lights are described in more detail in the paper, but generally are used for light outputs that are used as input to another show. The `light_number` is like a light index, but lights can also be in different universes (useful for representing shows that are controlled by different controllers, for instance).
+* This is the abstraction for a `Light` output by a `LightShow`, and contains `light_number`, `universe`, and `is_generic`. Generic lights are described in more detail in the paper, but generally are used for light outputs that are used as input to another show. The `light_number` is like a light index, but lights can also be in different universes (useful for representing shows that are controlled by different controllers, for instance).
 
 ### HSV and HSVInfo
 
@@ -36,23 +36,23 @@ HSV objects only contain an optional hue, saturation, and value in [0,1], wherea
 
 ### LightingInfoType
 
-This is just an alias for Map[Light -> HSVInfo]
+This is just an alias for `Dict[Light, HSVInfo]`.
 
 ### LightingComponent
 
-LightingComponenets are used to represent how lights sit in space or are grouped together, and generally have two methods. `get_lights_in_space` returns all of the lights inside of a given shape (with their densities), and `all_lights_in_component` returns just a set of all the Lights that are contained in the LightingComponent.
+`LightingComponents` are used to represent how lights sit in space or are grouped together, and generally have two methods. `get_lights_in_space` returns all of the lights inside of a given shape (with their densities), and `all_lights_in_component` returns just a set of all the Lights that are contained in the LightingComponent.
 
 ### Shape
 
-A shape represents a region in space (that has density which may vary over time). `point_in_shape` returns the density of the shape at a given point, and `bounding_cube` returns a `Cube` shape that bounds the region of space where the given `Shape` has density > 0 (across all of time).
+A `Shape` represents a region in space (that has density which may vary over time). `point_in_shape` returns the density of the shape at a given point, and `bounding_cube` returns a `Cube` shape that bounds the region of space where the given `Shape` has density > 0 (across all of time).
 
 ### Simple Server
 
 ### Visualizer
 
-The visualizer constructor takes in a LightShow object to play, and then has one method, namely `start`. When `start` is called, it takes in the number of circles to display (or just uses the largest light index from the show). Note that the visualizer assumes that all lights are in universe zero, so using this visualizer with multiple universes may not work very well.
+The `Visualizer` constructor takes in a `LightShow` object to play, and then has one method, namely `start`. When `start` is called, it takes in the number of circles to display (or just uses the largest light index from the show). Note that the visualizer assumes that all lights are in universe zero, so using this visualizer with multiple universes may not work very well.
 
-An example usage of the visualizer can be gotten by running the following:
+An example usage of the visualizer can be run by doing the following:
 ```py
 lightshow = fade(HSV(1, 1, 1), HSV(1, 1, 0), length=10000,
                      lights={Light(0), Light(5)})
